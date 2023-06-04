@@ -7,10 +7,11 @@ This is the open source hawdware project.
 ![CAD](img/CAD.png)
 
 ## Function check
-![CAD](img/chack.png)
+![CAD](img/chack.jpg)
 
 ## Controller (M5AtomPad)
-![Controller](img/Controller.png)
+![Controller](img/Controller.jpg)
+
 <https://github.com/tomorrow56/M5AtomPad>
 
 ## Youtube
