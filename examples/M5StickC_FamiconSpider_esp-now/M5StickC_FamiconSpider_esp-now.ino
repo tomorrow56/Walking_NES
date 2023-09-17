@@ -5,7 +5,9 @@
 
 #include <Adafruit_PWMServoDriver.h>
 
-Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x72, Wire1);
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x72);
+#define SDA 0
+#define SCL 26
 
 //#define chgDET
 #define DEBUG
@@ -32,7 +34,7 @@ boolean sending = false;
 /********************************
 * for Servo control
 *********************************/
-const uint8_t motorInterval = 30;  //[ms]
+const uint8_t motorInterval = 100;  // default 30[ms]
 
 // Published values for SG90 servos; 0-180 deg
 int minUs = 500;
@@ -96,7 +98,7 @@ void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
   }
   Serial.println("");
 
-// 送信元でフィルタ(送信器のMACアドレスに修正してください)
+// 送信元でフィルタ
   if((String)macStr == "4C:75:25:C6:F8:0C" || (String)macStr == "D8:A0:1D:5B:D1:AC" || (String)macStr == "50:02:91:90:08:C0"){
     if(data[0] == rNES_A){
       Serial.println("NES_A");
@@ -153,10 +155,18 @@ void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
 void setup() {
   // M5Stack::begin(LCDEnable, PowerEnable, SerialEnable);
   M5.begin(true, true, true);
-  Wire1.begin(0, 26);
+  Wire.begin(SDA, SCL);
+
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setRotation(0);
+  M5.Lcd.setTextSize(1);
+  M5.Lcd.setTextColor(WHITE, BLACK);
+  M5.Lcd.setCursor(0, 0);
 
   Serial.println("M5StickC Famicon Spider esp-now");
   Serial.printf("NES mode: %d\n", modeNES);
+  M5.Lcd.println("NES Spider");
+  M5.Lcd.printf("NES mode: %d\n", modeNES);
 
 /*
  * Servo setup
@@ -199,13 +209,6 @@ void setup() {
   delay(10);
 
   Serial.println("Ready");
-
-  M5.Lcd.fillScreen(BLACK);
-//  M5.Lcd.drawJpgFile(SD, Face.c_str(), 0, 0, 320, 240);
-  M5.Lcd.setRotation(3);
-  M5.Lcd.setTextSize(2);
-  M5.Lcd.setTextColor(WHITE, BLACK);
-  M5.Lcd.setCursor(0, 0);
   M5.Lcd.print("Ready!");
 
 /*
@@ -219,13 +222,6 @@ void setup() {
       adjMode();
     }
   #endif
-
-  M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setRotation(3);
-  M5.Lcd.setTextSize(2);
-  M5.Lcd.setTextColor(WHITE, BLACK);
-  M5.Lcd.setCursor(0, 0);
-  M5.Lcd.print("NES Spider");
 
   walkStop();
 
