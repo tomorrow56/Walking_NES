@@ -17,3 +17,5 @@ This is the open source hawdware project.
 ## Youtube
 <https://youtu.be/02uRKkd1d6U>
 
+## Protopedia
+https://protopedia.net/prototype/3902
