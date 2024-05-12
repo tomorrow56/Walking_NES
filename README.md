@@ -1,7 +1,12 @@
-# M5 Quadrupted Spider Robot Famicom(NES) version
+# M5 Quadrupted Spider Robot Retro Game Machine version
 
 This is the open source hawdware project.
-![complete](img/complete.jpg)
+
+## Nintendo Famicon version
+![Walking NES](img/complete.jpg)
+
+## SEGA Saturn bersion
+![Walking Saturbn](img/saturn.jpg)
 
 ## CAD image
 ![CAD](img/CAD.png)
