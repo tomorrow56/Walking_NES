@@ -5,7 +5,7 @@ This is the open source hawdware project.
 ## Nintendo Famicon version
 ![Walking NES](img/complete.jpg)
 
-## SEGA Saturn bersion
+## SEGA Saturn version
 ![Walking Saturbn](img/saturn.jpg)
 
 ## CAD image
